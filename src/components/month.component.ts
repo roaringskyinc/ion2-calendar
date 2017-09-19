@@ -12,18 +12,37 @@ export const MONTH_VALUE_ACCESSOR: any = {
   selector: 'ion-calendar-month',
   providers: [MONTH_VALUE_ACCESSOR],
   template: `
-    <div [class]="color">
+    <div [style.color]="color">
       <ng-template [ngIf]="pickMode !== 'range'" [ngIfElse]="rangeBox">
         <div class="days-box">
           <ng-template ngFor let-day [ngForOf]="month.days" [ngForTrackBy]="trackByTime">
             <div class="days">
               <ng-container *ngIf="day">
-                <button [class]="'days-btn ' + day.cssClass"
-                        [class.today]="day.isToday"
-                        (click)="onSelected(day)"
-                        [class.marked]="day.marked"
-                        [class.on-selected]="isSelected(day.time)"
-                        [disabled]="day.disable">
+                <button *ngIf="(day.isToday == true) && (day.marked == true) && (isSelected(day.time) == true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable" [style.background]="color">
+                  <p [style.color]="rgb(255, 255, 255)">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday == true) && (day.marked == true) && (isSelected(day.time) != true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable">
+                  <p [style.color]="color">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday == true) && (day.marked != true) && (isSelected(day.time) != true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable">
+                  <p [style.color]="color">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday == true) && (day.marked != true) && (isSelected(day.time) == true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable" [style.background]="color">
+                  <p [style.color]="rgb(255, 255, 255)">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday != true) && (day.marked == true) && (isSelected(day.time) == true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable" [style.background]="color">
+                  <p [style.color]="rgb(255, 255, 255)">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday != true) && (day.marked != true) && (isSelected(day.time) == true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable" [style.background]="color">
+                  <p [style.color]="rgb(255, 255, 255)">{{day.title}}</p>
+                  <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
+                </button>
+                <button *ngIf="(day.isToday != true) && (day.marked == true) && (isSelected(day.time) != true)" [class]="days-btn" (click)="onSelected(day)" [disabled]="day.disable">
                   <p>{{day.title}}</p>
                   <small *ngIf="day.subTitle">{{day?.subTitle}}</small>
                 </button>
@@ -65,7 +84,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
   @Input() pickMode: PickMode;
   @Input() isSaveHistory: boolean;
   @Input() id: any;
-  @Input() color: string = 'primary';
+  @Input() color: string = '#488aff';
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
