@@ -2,12 +2,14 @@ import { OnInit, EventEmitter } from '@angular/core';
 import { CalendarMonth, CalendarModalOptions, CalendarComponentOptions } from '../calendar.model';
 import { CalendarService } from "../services/calendar.service";
 import { ControlValueAccessor } from '@angular/forms';
+import * as moment from 'moment';
 export declare const ION_CAL_VALUE_ACCESSOR: any;
 export declare class CalendarComponent implements ControlValueAccessor, OnInit {
     calSvc: CalendarService;
     monthOpt: CalendarMonth;
     options: CalendarComponentOptions;
     format: string;
+    type: 'string' | 'js-date' | 'moment' | 'time' | 'unix' | 'object';
     onChange: EventEmitter<any>;
     _d: CalendarModalOptions;
     _calendarMonthValue: any[];
@@ -26,4 +28,6 @@ export declare class CalendarComponent implements ControlValueAccessor, OnInit {
     canBack(): boolean;
     onChanged($event: any[]): void;
     _writeValue(value: any): void;
+    _toTimestamp(value: any): number;
+    _handleType(value: any): string | number | Date | moment.Moment | moment.MomentObjectOutput;
 }

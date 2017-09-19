@@ -200,7 +200,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     return date.valueOf();
   }
 
-  _handleType(value) {
+  _handleType(value: any) {
     let date = moment(value);
     switch (this.type) {
       case 'string':
