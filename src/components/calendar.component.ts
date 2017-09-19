@@ -44,7 +44,7 @@ export const ION_CAL_VALUE_ACCESSOR: any = {
       [month]="monthOpt"
       (onChange)="onChanged($event)"
       [pickMode]="_d.pickMode"
-      [color]="_d.color">
+      [style.color]="_d.color">
 
     </ion-calendar-month>
 
