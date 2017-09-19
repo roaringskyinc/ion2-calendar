@@ -34,7 +34,7 @@ export class CalendarService {
       doneIcon = false,
       id = '',
       pickMode = 'single',
-      color = 'primary',
+      color = '#488aff',
       isSaveHistory = false,
       monthFormat = 'MMM yyyy',
       title = 'CALENDAR',

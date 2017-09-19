@@ -9,7 +9,7 @@ import * as moment from 'moment';
   template: `
     <ion-header>
 
-      <ion-navbar [color]="_color">
+      <ion-navbar [style.color]="_color">
 
         <!--<ion-buttons start [hidden]="!showYearPicker">-->
         <!--<ion-select [(ngModel)]="year" (ngModelChange)="changedYearSelection()" interface="popover">-->
@@ -37,7 +37,7 @@ import * as moment from 'moment';
       </ion-navbar>
 
       <ion-calendar-week
-        [color]="_color"
+        [style.color]="_color"
         [weekArray]="weekdays"
         [weekStart]="weekStart">
       </ion-calendar-week>
@@ -55,7 +55,7 @@ import * as moment from 'moment';
                                 [pickMode]="options.pickMode"
                                 [isSaveHistory]="isSaveHistory"
                                 [id]="_id"
-                                [color]="_color"
+                                [style.color]="_color"
                                 (onChange)="onChange($event)"
                                 [(ngModel)]="datesTemp">
 
